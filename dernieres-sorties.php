@@ -33,7 +33,7 @@ if (!function_exists('add_action')) {
     exit;
 }
 
-define('BASE_URL_DERNIERES_SORTIES_SERVICE', 'http://local.dernieressorties/app_dev.php/dernieres-sorties');
+define('BASE_URL_DERNIERES_SORTIES_SERVICE', 'http://releaseapi.librairielabourse.fr/dernieres-sorties');
 define('DERNIERES_SORTIES_SERVICE_LIMIT', 500);
 
 function dernieres_sorties_fn($atts)
