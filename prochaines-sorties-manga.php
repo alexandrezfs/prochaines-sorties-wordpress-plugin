@@ -1,10 +1,8 @@
 <?php
-/**
- * @package DernieresSorties
- */
+
 /*
-Plugin Name: Dernieres Sorties
-Description: Provide a shortcode to display last manga release.
+Plugin Name: Prochaines Sorties
+Description: Provide a shortcode to display next manga releases.
 Version: 1.0.0
 Author: Alexandre Nguyen
 Author URI: http://alexandrenguyen.fr
@@ -33,17 +31,17 @@ if (!function_exists('add_action')) {
     exit;
 }
 
-define('BASE_URL_DERNIERES_SORTIES_SERVICE', 'http://releaseapi.librairielabourse.fr/dernieres-sorties');
-define('DERNIERES_SORTIES_SERVICE_LIMIT', 500);
+define('BASE_URL_PROCHAINES_SORTIES_SERVICE', 'http://releaseapi.librairielabourse.fr/release/manga');
+define('PROCHAINES_SORTIES_SERVICE_LIMIT', 500);
 
-function dernieres_sorties_fn($atts)
+function prochaines_sorties_fn($atts)
 {
-    $limit = $atts['limit'] ? $atts['limit'] : DERNIERES_SORTIES_SERVICE_LIMIT;
+    $limit = $atts['limit'] ? $atts['limit'] : PROCHAINES_SORTIES_SERVICE_LIMIT;
     $fromDate = $atts['fromdate'] ? $atts['fromdate'] : date('Y-m-d');
 
     $params = array('limit' => $limit, 'from_date' => $fromDate);
 
-    $url = BASE_URL_DERNIERES_SORTIES_SERVICE . '?' . http_build_query($params);
+    $url = BASE_URL_PROCHAINES_SORTIES_SERVICE . '?' . http_build_query($params);
 
     $jsonSorties = file_get_contents($url);
 
@@ -88,4 +86,4 @@ function dernieres_sorties_fn($atts)
     return $table;
 }
 
-add_shortcode('dernieres_sorties', 'dernieres_sorties_fn');
+add_shortcode('prochaines_sorties', 'prochaines_sorties_fn');
